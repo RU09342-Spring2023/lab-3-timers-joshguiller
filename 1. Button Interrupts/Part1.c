@@ -38,12 +38,12 @@ int main(void)
     {
         if (LED_Color)
         {
-            P1OUT ^= BIT0;                  // P1.0 = toggle
+            P1OUT ^= BIT0;                  // P1.0 = toggle (Red LED)
             P6OUT &= ~BIT6;
         }
         else
         {
-            P6OUT ^= BIT6;                 // P6.6 = toggle
+            P6OUT ^= BIT6;                 // P6.6 = toggle (Green LED)
             P1OUT &= ~BIT0;
         }
         __delay_cycles(100000);
@@ -85,16 +85,16 @@ __interrupt void Port_2(void)
 {
     P2IFG &= ~BIT3;                         // Clear P1.3 IFG
 
-    if (P2IES & BIT3)       // Keep LED Red
+    if (P2IES & BIT3)       // If falling edge
     {
-        LED_Color = 0;
+        LED_Color = 0;      // LED is red
         P2IES &= ~BIT3;   // Look for rising edge
 
     }
 
-    else if (!(P2IES & BIT3)) // Keep LED Green
+    else if (!(P2IES & BIT3)) // If rising edge
     {
-        LED_Color = 1;
+        LED_Color = 1;      // LED is Green
         P2IES |= BIT3;    // Look for falling edge
 
 
