@@ -91,7 +91,7 @@ __interrupt void Port_4(void)
 {
     P4IFG &= ~BIT1;     // Set interrupt flag to 0
 
-    press = 500;       // Reset frequency to original
+    press = 3000;       // Reset frequency to original
     ifCount = 0;        // Button pressed = 0
 }
 
